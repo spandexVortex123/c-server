@@ -1,5 +1,5 @@
 all:
-	gcc main.c init.c utils.c -o main -Wall -Wextra
+	gcc main.c -lpthread -o main -Wall -Wextra
 
 clean:
 	rm main
