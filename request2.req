@@ -1,0 +1,15 @@
+POST /doLogin HTTP/1.1
+Host: altoromutual.com
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:92.0) Gecko/20100101 Firefox/92.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 37
+Origin: http://altoromutual.com
+Connection: close
+Referer: http://altoromutual.com/login.jsp
+Cookie: JSESSIONID=FB299310379B350F4E05F6343101C327
+Upgrade-Insecure-Requests: 1
+
+uid=admin&passw=admin&btnSubmit=Login
