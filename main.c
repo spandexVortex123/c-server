@@ -24,7 +24,20 @@ struct Request {
 
 void setup();
 void *handle_request(void *args);
+char* get_current_time();
+char* get_request_type(char* line);
 
+// returns current server time, caller needs to free once used
+char* get_current_time() {
+    time_t t = time(NULL);
+    struct tm tm =*localtime(&t);
+    char* buffer = (char*)malloc(25);
+    sprintf(buffer, "%d-%02d-%02d %02d:%02d:%02d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+    printf("%d-%02d-%02d %02d:%02d:%02d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+    return buffer;
+}
+
+// initial socket and struct setup
 void setup() {
     // create socket
     int sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -115,6 +128,7 @@ void setup() {
     }
 }
 
+// handles each request
 void *handle_request(void *args) {
     // get client struct and new socket descriptor
     struct Request *request = (struct Request*) args;
@@ -143,7 +157,18 @@ void *handle_request(void *args) {
     pthread_exit(0);
 }
 
+// returns http method type, caller needs to free once used
+char* get_request_type(char* line) {
+    char l[10] = { 0 };
+    int i = 0;
+    while(i<10) {
+        l[i] = line[i];
+        i++;
+    }
+    char** lines = (char*)malloc(sizeof(char*) * 10);
+}
+
 int main() {
-    setup();
+    printf("%s", get_request_type("abcdefghijklmnopqrstuvwxyz"));
     return 0;
 }
